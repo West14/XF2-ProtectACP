@@ -1,7 +1,7 @@
 {
     "legacy_addon_id": "",
     "title": "[West] Protect ACP",
-    "description": "",
+    "description": "This add-on redirects users who don't have admin permissions to the public index.",
     "version_id": 1000070,
     "version_string": "1.0.0",
     "dev": "West",
@@ -9,7 +9,8 @@
     "faq_url": "",
     "support_url": "",
     "extra_urls": {
-        "XFI": "https://xenforo.info/members/22547"
+        "XFI": "https://xenforo.info/members/22547",
+        "GitHub": "https://github.com/West14/XF2-ProtectACP"
     },
     "require": {
         "XF": [
