@@ -17,16 +17,19 @@ class Listener
         if (strtolower($action) == 'form')
         {
             $cookie = $controller->request()->getCookie('user');
+            $redirect = $controller->redirect(\XF::app()->router('public')->buildLink('index'));
+
             if ($cookie)
             {
                 $userId = stristr($cookie, ',', true);
                 /** @var \XF\Entity\User $user */
                 $user = \XF::em()->find('XF:User', $userId);
-                if (!$user->is_admin) $reply = $controller->redirect(\XF::app()->router('public')->buildLink('index'));
+
+                if (!$user || !$user->is_admin) $reply = $redirect;
             }
             else
             {
-                $reply = $controller->redirect(\XF::app()->router('public')->buildLink('index'));
+                $reply = $redirect;
             }
         }
     }
