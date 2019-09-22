@@ -1,8 +1,8 @@
 {
-    "event_id": "controller_post_dispatch",
+    "event_id": "controller_pre_dispatch",
     "execute_order": 10,
     "callback_class": "West\\ProtectACP\\Listener",
-    "callback_method": "postDispatchAdminLogin",
+    "callback_method": "preDispatchAdminLogin",
     "active": true,
     "hint": "XF\\Admin\\Controller\\Login",
     "description": ""

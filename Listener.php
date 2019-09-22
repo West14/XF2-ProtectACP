@@ -12,25 +12,23 @@ namespace West\ProtectACP;
 
 class Listener
 {
-    public static function postDispatchAdminLogin(\XF\Mvc\Controller $controller, $action, \XF\Mvc\ParameterBag $params, \XF\Mvc\Reply\AbstractReply &$reply)
+    /**
+     * @param \XF\Mvc\Controller $controller
+     * @param $action
+     * @param \XF\Mvc\ParameterBag $params
+     * @throws \XF\Mvc\Reply\Exception
+     */
+    public static function preDispatchAdminLogin(\XF\Mvc\Controller $controller, $action, \XF\Mvc\ParameterBag $params)
     {
-        if (strtolower($action) == 'form')
+        /** @var \XF\Entity\User|null $user */
+        $user = \XF::em()->find(
+            'XF:User',
+            \XF::app()->container('session.public')['userId']
+        );
+
+        if (!$user || !$user->is_admin)
         {
-            $cookie = $controller->request()->getCookie('user');
-            $redirect = $controller->redirect(\XF::app()->router('public')->buildLink('index'));
-
-            if ($cookie)
-            {
-                $userId = stristr($cookie, ',', true);
-                /** @var \XF\Entity\User $user */
-                $user = \XF::em()->find('XF:User', $userId);
-
-                if (!$user || !$user->is_admin) $reply = $redirect;
-            }
-            else
-            {
-                $reply = $redirect;
-            }
+            throw $controller->exception($controller->redirect(\XF::app()->router('public')->buildLink('index')));
         }
     }
 }
