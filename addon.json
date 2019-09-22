@@ -1,0 +1,21 @@
+{
+    "legacy_addon_id": "",
+    "title": "[West] Protect ACP",
+    "description": "",
+    "version_id": 1000070,
+    "version_string": "1.0.0",
+    "dev": "West",
+    "dev_url": "https://t.me/West99",
+    "faq_url": "",
+    "support_url": "",
+    "extra_urls": {
+        "XFI": "https://xenforo.info/members/22547"
+    },
+    "require": {
+        "XF": [
+            2010070,
+            "XenForo 2.1+"
+        ]
+    },
+    "icon": "fa-lock"
+}
